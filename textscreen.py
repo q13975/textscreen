@@ -3,18 +3,18 @@
 import os, sys, syslog, termios, struct, math
 
 class ReadStream(object):
-	''' Set stream(stdin) for read in nocanonical mode and get key input without 
-	waiting for line feed
+	''' Set stream(stdin) for read in nocanonical mode and get key input 
+	without waiting for line feed
 
 	Example:
-		with ReadStream(6, 1, 0) as kb:
-			while True:
-				key = kb.read()
-				r = struct.unpack('B' * len(key), key)
-				if len(key) == 1 and r[0] = 27:		#ESCAPE
-					break
-				if key == ReadStream.ESCAPE:		#ESCAPE
-					break
+	with ReadStream(6, 1, 0) as kb:
+		while True:
+			key = kb.read()
+			r = struct.unpack('B' * len(key), key)
+			if len(key) == 1 and r[0] = 27:		#ESCAPE
+				break
+			if key == ReadStream.ESCAPE:		#ESCAPE
+				break
 	'''
 
 	# key sequence(byte string), raw data of a key stroke
@@ -874,7 +874,7 @@ class RichText(object):
 		text = self.text if text == None else text
 		return(self._fmt.format(row, column, text) if row and column else self._fmt.format(text))
 
-class TextScreen():
+class TextScreen(object):
 	''' A text screen which supports line by line print, no positional 
 	text is supported, please use TextPad or TextWindow if otherwise
 
